@@ -15,7 +15,28 @@ with open("input.txt") as f:
             nb += 1
 
 
-print("\n",nb)
+print("part one :",nb)
 
-# my result : 1084
+# part two
 
+point = 50
+nb = 0
+
+with open("input.txt") as f:
+    for line in f:
+        line = line.strip()
+        number = int(line[1:])
+        prev = point
+
+        point += number * (-1 if line[0] == "L" else 1)
+
+        if point == 0:
+            nb += 1
+        else:
+            nb += abs(point)//100
+            if point < 0 and prev != 0:
+                nb += 1
+
+        point = point%100
+
+print("part two :",nb)
